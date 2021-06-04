@@ -5,9 +5,20 @@ export default class DecisionTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            decision: "",
-            criteria: [],
-            options: [],
+            decision: "What should i eat today",
+            criteria: [
+                "price",
+                "taste"
+            ],
+            options: [{
+                option: "Hot dog",
+                price: 40,
+                taste: 10
+            }, {
+                option: "Pizza",
+                price: 69,
+                taste: 20
+            }],
             sIndex: 0,
             sCriteria: '',
             newInput: ''
