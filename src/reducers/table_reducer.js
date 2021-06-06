@@ -1,7 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {
     TABLE_OPTIONS,
-    TABLE_CRITERIA
+    TABLE_CRITERIA,
+    TABLE_VALUE
 } from '../actions/type.js'
 
 export default (state = {
@@ -27,9 +28,11 @@ export default (state = {
                 ...state.options,
             ]
             newOption.forEach((_,i) => 
-                newOption[i] = {...newOption[i], [x[x.length -1]]: 20}
+                newOption[i] = {...newOption[i], [x[x.length -1]]: 30}
             )
             return Object.assign({}, state, {criteria: action.payload, options: newOption});
+        case TABLE_VALUE:
+            return Object.assign({}, state, {options: action.payload});
         default:
             return state;
     }

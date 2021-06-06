@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Slider } from '@material-ui/core';
 import { connect } from 'react-redux';
 
-import { updateOptions } from '../../actions/index'
+import { updateOptions, updateValue } from '../../actions/index'
 
 class DecisionTable extends Component {
     constructor(props) {
@@ -29,7 +29,6 @@ class DecisionTable extends Component {
             sIndex: index, 
             sCriteria: criteria
         })
-        console.log(this.props.table.options)
     }
 
     handleInputChange = (event) => {
@@ -41,11 +40,9 @@ class DecisionTable extends Component {
 
     handleChange = (event, newValue) => {
         let {sIndex, sCriteria} = this.state
-        let newOptions = this.state.options
+        let newOptions = this.props.table.options
         newOptions[sIndex][sCriteria] = newValue
-        this.setState({
-            options: newOptions
-        })
+        this.props.updateValue(newOptions)
       };
     
 
@@ -130,25 +127,25 @@ class DecisionTable extends Component {
                                                 {(()=> {
                                                     if (value[item] >= 75) {
                                                         return <button 
-                                                        className={`bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 focus:bg-green-800 rounded`}
+                                                        className={`bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 focus:bg-green-800 w-full rounded`}
                                                         onClick={()=>this.onSelect(index,item)}>
                                                         EXCELLENT
                                                         </button>
                                                     } else if (value[item] >= 50 && value[item] <= 74) {
                                                         return <button 
-                                                        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 focus:bg-blue-800 rounded`}
+                                                        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 focus:bg-blue-800 w-full rounded`}
                                                         onClick={()=>this.onSelect(index,item)}>
                                                         HIGH
                                                         </button>
                                                     } else if (value[item] >= 25 && value[item] <= 49) {
                                                         return <button 
-                                                        className={`bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 focus:bg-yellow-700 rounded`}
+                                                        className={`bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 focus:bg-yellow-700 w-full rounded`}
                                                         onClick={()=>this.onSelect(index,item)}>
                                                         MEDIUM
                                                         </button>
                                                     } else {
                                                         return <button 
-                                                        className={`bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 focus:bg-red-700 rounded`}
+                                                        className={`bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 focus:bg-red-700 w-full rounded`}
                                                         onClick={()=>this.onSelect(index,item)}>
                                                         LOW
                                                         </button>
@@ -189,5 +186,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  {updateOptions}
+  {updateOptions, updateValue}
 )(DecisionTable);
