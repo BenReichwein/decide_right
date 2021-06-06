@@ -1,1 +1,2 @@
-export const TABLE_INFO = 'TABLE_INFO'
+export const TABLE_OPTIONS = 'TABLE_OPTIONS'
+export const TABLE_CRITERIA = 'TABLE_CRITERIA'

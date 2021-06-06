@@ -1,33 +1,40 @@
 import React, { Component } from 'react'
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import { connect } from 'react-redux';
-import { createTable } from '../../actions';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+
+import InputCriteria from './input_criteria'
 
 class SideBar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            expand: false
+            expand: false,
+            seenInput: false
         };
+    }
+
+    toggleInput = () => {
+        this.setState({seenInput: !this.state.seenInput})
     }
 
     render() {
         return (
             <React.Fragment>
+                {this.state.seenInput? <InputCriteria toggle={this.toggleInput}/> : null}
                 <SideNav
                 className="bg-gray-600"
                 expanded={this.state.expand}
                 onSelect={(selected) => {
                     if (selected === "newTable") {
-                        this.props.createTable()
                         this.setState({
                             expand: false
                         })
-                    } else {
-                        const to = '/list/' + selected;
-                        this.props.history.push(to);
-                        this.setState({expand: false})
+                    } else if (selected === "inputCriteria") {
+                        this.setState({
+                            expand: false,
+                            seenInput: true
+                        })
                     }
                 }}
                 onToggle={(expanded) => this.setState({expand: expanded})}
@@ -83,5 +90,5 @@ class SideBar extends Component {
 
 export default connect(
   null,
-  {createTable}
+  null
 )(SideBar);

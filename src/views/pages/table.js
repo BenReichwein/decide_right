@@ -7,7 +7,6 @@ import DecisionTable from '../components/decision_table'
 class Table extends Component {
 
     render() {
-        console.log(this.props.table)
         let {table} = this.props
         return (
             <div>

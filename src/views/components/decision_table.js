@@ -1,24 +1,13 @@
 import React, {Component} from 'react'
 import { Slider } from '@material-ui/core';
+import { connect } from 'react-redux';
 
-export default class DecisionTable extends Component {
+import { updateOptions } from '../../actions/index'
+
+class DecisionTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            decision: "What should i eat today",
-            criteria: [
-                "price",
-                "taste"
-            ],
-            options: [{
-                option: "Hot dog",
-                price: 40,
-                taste: 10
-            }, {
-                option: "Pizza",
-                price: 69,
-                taste: 20
-            }],
             sIndex: 0,
             sCriteria: '',
             newInput: ''
@@ -27,13 +16,10 @@ export default class DecisionTable extends Component {
 
     inputOption = (e) => {
         e.preventDefault();
-        let {options, newInput} = this.state
-        let newOption = {
-            ...options[options.length -1],
-            option: newInput
-        }
+        let {newInput} = this.state
+        let {options} = this.props.table
+        this.props.updateOptions(options, newInput)
         this.setState( { 
-            options: [...options, newOption],
             newInput: ''
         })
     }
@@ -43,7 +29,7 @@ export default class DecisionTable extends Component {
             sIndex: index, 
             sCriteria: criteria
         })
-        console.log(this.state.options)
+        console.log(this.props.table.options)
     }
 
     handleInputChange = (event) => {
@@ -86,7 +72,9 @@ export default class DecisionTable extends Component {
               label: 'Excellent',
             },
           ];
-        let {options, decision, criteria, sCriteria, sIndex} = this.state
+        let {sCriteria, sIndex} = this.state
+        let {options, decision, criteria} = this.props.table;
+        console.log(this.props.table)
         return (
             <div className="flex flex-col">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -192,3 +180,14 @@ export default class DecisionTable extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        table: state.table,
+    }
+}
+
+export default connect(
+  mapStateToProps,
+  {updateOptions}
+)(DecisionTable);
