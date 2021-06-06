@@ -4,31 +4,24 @@ import {
     TABLE_CRITERIA
 } from '../actions/type.js'
 
-let x = [
-    "price",
-    "taste"
-]
-
 export default (state = {
     decision: "What should i eat today",
     criteria: [
         "price",
-        "taste"
     ],
     options: [{
         option: "Hot dog",
-        [x[0]]: 20,
-        [x[1]]: 10
+        price: 20,
     }, {
         option: "Pizza",
-        [x[0]]: 69,
-        [x[1]]: 20
+        price: 79,
     }],
 }, action) => {
     switch (action.type) {
         case TABLE_OPTIONS:
             return Object.assign({}, state, {options: action.payload});
         case TABLE_CRITERIA:
+            let x = state.criteria
             x = action.payload;
             let newOption = [
                 ...state.options,
@@ -41,7 +34,3 @@ export default (state = {
             return state;
     }
 }
-// adding criteria
-// x.push("new criteria")
-// return Object.assign({}, state, {criteria: "new criteria"})
-// return Object.assign({}, state, {options: [x[x.length()]]})
