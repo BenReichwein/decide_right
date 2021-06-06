@@ -16,8 +16,6 @@ export const updateOptions = (options, newInput) => async (dispatch) => {
 };
 // creating a criteria
 export const createCriteria = (criteria, newInput) => async (dispatch) => {
-    let newCriteria = criteria
-    newCriteria.push(newInput)
 
-    dispatch({ type: TABLE_CRITERIA, payload: newCriteria});
+    dispatch({ type: TABLE_CRITERIA, payload: [...criteria, newInput]});
 };
