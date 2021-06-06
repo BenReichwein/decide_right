@@ -34,7 +34,7 @@ export default (state = {
                 ...state.options,
             ]
             newOption.forEach((_,i) => 
-                newOption[i] = {...newOption[i], [x[x.length -1]]:20}
+                newOption[i] = {...newOption[i], [x[x.length -1]]: 20}
             )
             return Object.assign({}, state, {criteria: action.payload, options: newOption});
         default:
