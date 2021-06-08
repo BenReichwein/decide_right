@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Slider } from '@material-ui/core';
 import { connect } from 'react-redux';
 
-import { updateOptions, updateValue, deleteOption } from '../../actions/index'
+import { updateOptions, updateValue, deleteOption, deleteCriteria } from '../../actions/index'
 
 class DecisionTable extends Component {
     constructor(props) {
@@ -101,11 +101,16 @@ class DecisionTable extends Component {
                                     >
                                         Options
                                     </th>
-                                {criteria.map((value) => (
+                                {criteria.map((value, index) => (
                                     <th
                                         scope="col"
                                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                     >
+                                        <button className="text-red-500"
+                                            onClick={()=>this.props.deleteCriteria(criteria, index)}
+                                        >
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                         {value}
                                     </th>
                                 ))}
@@ -191,5 +196,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  {updateOptions, updateValue, deleteOption}
+  {updateOptions, updateValue, deleteOption, deleteCriteria}
 )(DecisionTable);

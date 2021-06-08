@@ -41,3 +41,10 @@ export const deleteOption = (options, index) => async (dispatch) => {
     options.splice(index, 1);
     dispatch({ type: TABLE_OPTIONS, payload: options});
 };
+
+// delete criteria from array
+export const deleteCriteria = (criteria, index) => async (dispatch) => {
+    // remove item out of array from index
+    criteria.splice(index, 1);
+    dispatch({ type: TABLE_CRITERIA, payload: criteria});
+};
