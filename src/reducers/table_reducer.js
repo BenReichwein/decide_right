@@ -2,8 +2,7 @@
 import {
     TABLE_OPTIONS,
     TABLE_CRITERIA,
-    TABLE_VALUE,
-    TABLE_DELETE
+    TABLE_VALUE
 } from '../actions/type.js'
 
 export default (state = {
