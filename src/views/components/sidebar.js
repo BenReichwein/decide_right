@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 import InputCriteria from './input_criteria'
+import WeighCriteria from './weigh_criteria'
 
 class SideBar extends Component {
     constructor(props) {
         super(props)
         this.state = {
             expand: false,
-            seenInput: false
+            seenInput: false,
+            seenCriteria: false,
         };
     }
 
@@ -18,10 +20,15 @@ class SideBar extends Component {
         this.setState({seenInput: !this.state.seenInput})
     }
 
+    toggleCriteria = () => {
+        this.setState({seenCriteria: !this.state.seenCriteria})
+    }
+
     render() {
         return (
             <React.Fragment>
                 {this.state.seenInput? <InputCriteria toggle={this.toggleInput}/> : null}
+                {this.state.seenCriteria? <WeighCriteria toggle={this.toggleCriteria}/> : null}
                 <SideNav
                 className="bg-gray-600"
                 expanded={this.state.expand}
@@ -34,6 +41,11 @@ class SideBar extends Component {
                         this.setState({
                             expand: false,
                             seenInput: true
+                        })
+                    } else if (selected === "weighCriteria") {
+                        this.setState({
+                            expand: false,
+                            seenCriteria: true
                         })
                     }
                 }}
@@ -65,7 +77,7 @@ class SideBar extends Component {
                                 Input Criteria
                             </NavText>
                         </NavItem>
-                        <NavItem eventKey="weightCriteria">
+                        <NavItem eventKey="weighCriteria">
                             <NavIcon>
                                 <i className="fas fa-balance-scale-right"/>
                             </NavIcon>
