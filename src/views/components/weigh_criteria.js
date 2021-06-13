@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 
-//import { createCriteria } from '../../actions';
+import { updateWeight } from '../../actions';
 
 class WeighCriteria extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: this.props.table.criteria,
+            items: this.props.table.weight,
         }
     }
 
@@ -17,22 +17,22 @@ class WeighCriteria extends React.Component {
         this.props.toggle();
     };
 
-    createCriteria = () => {
-        let {input} = this.state
-        let {criteria} = this.props.table
-        this.props.createCriteria(criteria, input)
+    updateWeight = () => {
+        let {items} = this.state
+        this.props.updateWeight(items)
         this.props.toggle()
     }
 
     SortableItem = SortableElement(({value}) => (
-        <li class="border list-none rounded-sm px-3 py-3 font-semibold z-50" style={{borderBottomWidth:0}} tabIndex={0}>{value.toUpperCase()}</li>
+        <li class="border list-none rounded-sm px-3 py-3 font-semibold z-50" style={{borderBottomWidth:0}} tabIndex={0}>{value}</li>
     ))
 
     SortableList = SortableContainer(({items}) => {
         return (
             <ul class="list-inside text-center p-2">
             {items.map((value, index) => (
-                <this.SortableItem key={`item-${value}`} index={index} value={value} />
+                <this.SortableItem key={`item-${value}`} index={index} value={
+                    `[${index +1}] - ${value.toUpperCase()}`} />
             ))}
             </ul>
         );
@@ -67,7 +67,7 @@ class WeighCriteria extends React.Component {
                                     <button
                                         className="bg-emerald-500 text-black active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
-                                        onClick={this.createCriteria}
+                                        onClick={this.updateWeight}
                                     >
                                         Save Weights
                 </button>
@@ -89,5 +89,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    null
+    {updateWeight}
 )(WeighCriteria);

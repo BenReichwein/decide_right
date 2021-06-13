@@ -1,3 +1,4 @@
 export const TABLE_OPTIONS = 'TABLE_OPTIONS'
 export const TABLE_CRITERIA = 'TABLE_CRITERIA'
 export const TABLE_VALUE = 'TABLE_VALUE'
+export const TABLE_WEIGHT = 'TABLE_WEIGHT'

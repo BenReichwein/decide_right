@@ -2,6 +2,7 @@ import {
     TABLE_OPTIONS,
     TABLE_CRITERIA,
     TABLE_VALUE,
+    TABLE_WEIGHT
 } from './type';
 //
 //-> Tables
@@ -20,6 +21,12 @@ export const updateOptions = (options, newInput) => async (dispatch) => {
 export const createCriteria = (criteria, newInput) => async (dispatch) => {
 
     dispatch({ type: TABLE_CRITERIA, payload: [...criteria, newInput]});
+};
+
+// updating the weight
+export const updateWeight = (weight) => async (dispatch) => {
+
+    dispatch({ type: TABLE_WEIGHT, payload: weight});
 };
 
 // change table options value

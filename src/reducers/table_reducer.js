@@ -2,13 +2,17 @@
 import {
     TABLE_OPTIONS,
     TABLE_CRITERIA,
-    TABLE_VALUE
+    TABLE_VALUE,
+    TABLE_WEIGHT
 } from '../actions/type.js'
 
 export default (state = {
     decision: "What should i eat today",
     criteria: [
         "price",
+    ],
+    weight: [
+        "price"
     ],
     options: [{
         option: "Hot dog",
@@ -30,7 +34,9 @@ export default (state = {
             newOption.forEach((_,i) => 
                 newOption[i] = {...newOption[i], [x[x.length -1]]: 30}
             )
-            return Object.assign({}, state, {criteria: action.payload, options: newOption});
+            return Object.assign({}, state, {criteria: action.payload, options: newOption, weight: action.payload});
+        case TABLE_WEIGHT:
+            return Object.assign({}, state, {weight: action.payload});
         case TABLE_VALUE:
             return Object.assign({}, state, {options: action.payload});
         default:
