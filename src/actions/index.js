@@ -2,7 +2,8 @@ import {
     TABLE_OPTIONS,
     TABLE_CRITERIA,
     TABLE_VALUE,
-    TABLE_WEIGHT
+    TABLE_WEIGHT,
+    TABLE_REPORT
 } from './type';
 //
 //-> Tables
@@ -55,3 +56,11 @@ export const deleteCriteria = (criteria, index) => async (dispatch) => {
     criteria.splice(index, 1);
     dispatch({ type: TABLE_CRITERIA, payload: criteria});
 };
+
+// generate the report 
+export const generateReport = (state) => async (dispatch) => {
+    let {options, weight, decision} = state
+
+    console.log(state)
+    dispatch({ type: TABLE_REPORT, payload: state})
+}

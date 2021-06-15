@@ -5,6 +5,7 @@ import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 import InputCriteria from './input_criteria'
 import WeighCriteria from './weigh_criteria'
+import Report from './report'
 
 class SideBar extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class SideBar extends Component {
             expand: false,
             seenInput: false,
             seenCriteria: false,
+            seenReport: false
         };
     }
 
@@ -24,11 +26,16 @@ class SideBar extends Component {
         this.setState({seenCriteria: !this.state.seenCriteria})
     }
 
+    toggleReport = () => {
+        this.setState({seenReport: !this.state.seenReport})
+    }
+
     render() {
         return (
             <React.Fragment>
                 {this.state.seenInput? <InputCriteria toggle={this.toggleInput}/> : null}
                 {this.state.seenCriteria? <WeighCriteria toggle={this.toggleCriteria}/> : null}
+                {this.state.seenReport? <Report toggle={this.toggleReport}/> : null}
                 <SideNav
                 className="bg-gray-600"
                 expanded={this.state.expand}
@@ -46,6 +53,11 @@ class SideBar extends Component {
                         this.setState({
                             expand: false,
                             seenCriteria: true
+                        })
+                    } else if (selected === "createReport") {
+                        this.setState({
+                            expand: false,
+                            seenReport: true
                         })
                     }
                 }}
