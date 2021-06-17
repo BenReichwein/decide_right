@@ -61,6 +61,19 @@ export const deleteCriteria = (criteria, index) => async (dispatch) => {
 export const generateReport = (state) => async (dispatch) => {
     let {options, weight, decision} = state
 
+    let totals = []
+    let temp = 0;
+
+    options.forEach(value => {
+        console.log(value)
+        for (let i = 0; i < weight.length; i++) {
+            temp += (value[weight[i]] * (weight.length / (i+1)))
+        }
+        totals.push(temp)
+        temp = 0
+        console.log(totals)
+    })
+
     console.log(state)
     dispatch({ type: TABLE_REPORT, payload: state})
 }
