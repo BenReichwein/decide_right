@@ -24,8 +24,10 @@ class InputCriteria extends React.Component {
 
     handleEnterInput = (event) => {
         if (event.key === 'Enter'){
+            let {input} = this.state
+            let {criteria} = this.props.table
+            this.props.createCriteria(criteria, input)
             this.props.toggle()
-            this.props.createCriteria(this.state.input)
         }
     }
 

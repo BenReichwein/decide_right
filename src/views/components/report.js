@@ -23,9 +23,9 @@ class Report extends React.Component {
                         <div className="relative w-auto my-6 mx-auto max-w-3xl">
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none p-5">
 
-                                <h1>
-                                    Test
-                                </h1>
+                                <h3 className="text-center">
+                                    {this.props.table.report}
+                                </h3>
 
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                                     <button

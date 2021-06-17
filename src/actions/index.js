@@ -62,18 +62,24 @@ export const generateReport = (state) => async (dispatch) => {
     let {options, weight, decision} = state
 
     let totals = []
+    let message = []
     let temp = 0;
+    let topValue = {value: 0};
 
     options.forEach(value => {
-        console.log(value)
         for (let i = 0; i < weight.length; i++) {
             temp += (value[weight[i]] * (weight.length / (i+1)))
         }
-        totals.push(temp)
+        totals.push({key: value.option, value: temp})
+        message.push(`${value.option} with the value of: ${temp}`)
         temp = 0
-        console.log(totals)
     })
 
-    console.log(state)
-    dispatch({ type: TABLE_REPORT, payload: state})
+    for (let i = 0; i < totals.length; i++) {
+        if (totals[i].value > topValue.value) {
+            topValue = totals[i];
+        }
+    }
+
+    dispatch({ type: TABLE_REPORT, payload: `Here's the options after criteria calculations; ${message.join(', ')}. So knowing this, ${topValue.key} is the best option for you to choose.`})
 }

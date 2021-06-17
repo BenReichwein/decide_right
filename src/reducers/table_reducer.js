@@ -3,11 +3,13 @@ import {
     TABLE_OPTIONS,
     TABLE_CRITERIA,
     TABLE_VALUE,
-    TABLE_WEIGHT
+    TABLE_WEIGHT,
+    TABLE_REPORT
 } from '../actions/type.js'
 
 export default (state = {
     decision: "What should i eat today",
+    report: "report is undetermined right now",
     criteria: [
         "price",
     ],
@@ -39,6 +41,8 @@ export default (state = {
             return Object.assign({}, state, {weight: action.payload});
         case TABLE_VALUE:
             return Object.assign({}, state, {options: action.payload});
+        case TABLE_REPORT:
+            return Object.assign({}, state, {report: action.payload});
         default:
             return state;
     }
