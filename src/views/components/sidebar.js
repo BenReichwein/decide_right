@@ -40,11 +40,7 @@ class SideBar extends Component {
                 className="bg-gray-600"
                 expanded={this.state.expand}
                 onSelect={(selected) => {
-                    if (selected === "newTable") {
-                        this.setState({
-                            expand: false
-                        })
-                    } else if (selected === "inputCriteria") {
+                    if (selected === "inputCriteria") {
                         this.setState({
                             expand: false,
                             seenInput: true
@@ -65,22 +61,6 @@ class SideBar extends Component {
                 >
                     <SideNav.Toggle/>
                     <SideNav.Nav defaultSelected="">
-                        <NavItem eventKey="newTable">
-                            <NavIcon>
-                                <i className="fas fa-folder-plus"/>
-                            </NavIcon>
-                            <NavText>
-                                New Table
-                            </NavText>
-                        </NavItem>
-                        <NavItem eventKey="inputOption">
-                            <NavIcon>
-                                <i className="fas fa-table"/>
-                            </NavIcon>
-                            <NavText>
-                                Input Option
-                            </NavText>
-                        </NavItem>
                         <NavItem eventKey="inputCriteria">
                             <NavIcon>
                                 <i className="fas fa-sliders-h"/>

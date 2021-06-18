@@ -18,10 +18,10 @@ export default (state = {
     ],
     options: [{
         option: "Hot dog",
-        price: 20,
+        price: 80,
     }, {
         option: "Pizza",
-        price: 79,
+        price: 29,
     }],
 }, action) => {
     switch (action.type) {
